@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div class="container">
+    <div>
+        <table>
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>이름 - 댓글</th>
+            </tr>
+            </thead>
+            <tbody>
+
+                <td th:text="${member.name}"></td>
+                <td th:text="${member.comment}"></td>
+                <a th:href="@{/comments/commentDelete(id=${member.id})}">삭제</a>
+                <a th:href="@{/comments/commentDelete(id=${member.id})}">수정</a>
+
+            </tbody>
+        </table>
+    </div>
+</div> <!-- /container -->
+</body>
+</html>
