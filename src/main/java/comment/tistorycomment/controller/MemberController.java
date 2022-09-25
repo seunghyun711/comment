@@ -34,11 +34,11 @@ public class MemberController {
         return "comments/commentList";
     }
 
-    @GetMapping(value = "/comments/delete")
+    @GetMapping(value = "/comments/change")
     public String commentDelete(Model model){
 
-        model.addAttribute("delete", memberService.commentList());
-        return "comments/commentDelete";
+        model.addAttribute("change", memberService.commentList());
+        return "comments/commentChange";
     }
 
     @GetMapping(value = "/comments/view")
@@ -53,16 +53,24 @@ public class MemberController {
         return "redirect:/comments/list";
     }
 
-    @GetMapping(value = "/comments/change")
-    public String commentChange(Model model) {
-        model.addAttribute("change",memberService.commentList());
-        return "comments/commentChange";
-    }
-
-    @GetMapping("/comments/change/{id}")
-    public String memberChange(@PathVariable("id") Long id){
+    @GetMapping("/comments/commentModify/{id}")
+    public String memberChange(@PathVariable("id") Long id, Model model){
+        model.addAttribute("member",memberService.memberComment(id));
 
         return "comments/commentModify";
+    }
+
+    @PostMapping("/comments/update/{id}")
+    public String boardUpdate(@PathVariable("id") Long id, Member member){
+
+        Member memberTmp = memberService.memberComment(id);
+        memberTmp.setName(member.getName());
+        memberTmp.setPw(member.getPw());
+        memberTmp.setComment(member.getComment());
+
+        memberService.write(memberTmp);
+        return "redirect:/comments/list";
+
     }
 
 }

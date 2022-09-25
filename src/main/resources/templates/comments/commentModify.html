@@ -2,16 +2,16 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
 <div class="container">
-    <form action="/comments/writego" method="post">
+    <form th:action="@{/comments/update/{id}(id=${member.id})}" method="post">
         <div class="form-group">
             <label for="name">이름</label>
-            <input type="text" id="name" name="name" placeholder="이름을입력하세요">
+            <input type="text" id="name" name="name" placeholder="이름을입력하세요" th:value="${member.name}">
             <label for="name">암호</label>
-            <input type="text" id="pw" name="pw" placeholder="암호를 입력하세요">
+            <input type="text" id="pw" name="pw" placeholder="암호를 입력하세요" th:value="${member.pw}">
             <label for="name">댓글</label>
-            <input type="text" id="comment" name="comment" placeholder="글을 입력하세요">
+            <input type="text" id="comment" name="comment" placeholder="글을 입력하세요" th:value="${member.comment}">
         </div>
-        <button type="submit">등록</button>
+        <button type="submit">수정</button>
     </form>
 </div> <!-- /container -->
 </body>
