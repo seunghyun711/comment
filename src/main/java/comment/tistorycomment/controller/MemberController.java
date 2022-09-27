@@ -64,12 +64,18 @@ public class MemberController {
     public String boardUpdate(@PathVariable("id") Long id, Member member){
 
         Member memberTmp = memberService.memberComment(id);
-        memberTmp.setName(member.getName());
-        memberTmp.setPw(member.getPw());
-        memberTmp.setComment(member.getComment());
+        // 수정 시 암호를 입력했읗 때 기존 암호와 같을 때만 글이 수정됨
+        if(memberTmp.getPw().equals(member.getPw())){
+            memberTmp.setName(member.getName());
+            memberTmp.setPw(member.getPw());
+            memberTmp.setComment(member.getComment());
 
-        memberService.write(memberTmp);
-        return "redirect:/comments/list";
+            memberService.write(memberTmp);
+            return "redirect:/comments/list";
+        }else{
+            return "redirect:/";
+        }
+
 
     }
 

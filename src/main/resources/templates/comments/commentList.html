@@ -14,7 +14,9 @@
             <tr th:each="member : ${list}">
                 <td th:text="${member.name}"></td>
                 <td th:text="${member.comment}"></td>
+
             </tr>
+            <a th:href="@{/}">home</a>
             </tbody>
         </table>
     </div>
