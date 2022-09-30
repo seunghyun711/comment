@@ -14,7 +14,7 @@
 
                 <td th:text="${member.name}"></td>
                 <td th:text="${member.comment}"></td>
-                <a th:href="@{/comments/commentDelete(id=${member.id})}">삭제     </a>
+                <a th:href="@{/comments/commentDelete/{id}(id=${member.id})}">삭제     </a>
                 <a th:href="@{/comments/commentModify/{id}(id=${member.id})}">수정</a>
 
             </tbody>

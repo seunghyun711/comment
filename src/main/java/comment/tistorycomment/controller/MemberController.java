@@ -47,11 +47,11 @@ public class MemberController {
         return "comments/commentView";
     }
 
-    @GetMapping(value = "/comments/commentDelete")
-    public String delete(Long id) {
-        memberService.memberDelete(id);
-        return "redirect:/comments/list";
-    }
+//    @GetMapping(value = "/comments/commentDelete")
+//    public String delete(Long id) {
+//        memberService.memberDelete(id);
+//        return "redirect:/comments/list";
+//    }
 
     @GetMapping("/comments/commentModify/{id}")
     public String memberChange(@PathVariable("id") Long id, Model model){
@@ -75,8 +75,25 @@ public class MemberController {
         }else{
             return "redirect:/";
         }
+    }
 
+    @GetMapping(value = "/comments/commentDelete/{id}")
+    public String memberDelete(@PathVariable("id") Long id, Model model){
+        model.addAttribute("member",memberService.memberComment(id));
+        return "comments/commentDelete";
+    }
 
+    @PostMapping("/comments/delete/{id}")
+    public String boardDelete(@PathVariable("id") Long id, Member member){
+
+        Member memberTmp = memberService.memberComment(id);
+        // 수정 시 암호를 입력했읗 때 기존 암호와 같을 때만 글이 수정됨
+        if(memberTmp.getPw().equals(member.getPw())){
+            memberService.memberDelete(id);
+            return "redirect:/comments/list";
+        }else{
+            return "redirect:/";
+        }
     }
 
 }
