@@ -60,7 +60,7 @@ public class MemberController {
         return "comments/commentModify";
     }
 
-    @PostMapping("/comments/update/{id}")
+    @PostMapping("/comments/commentModify/{id}")
     public String boardUpdate(@PathVariable("id") Long id, Member member){
 
         Member memberTmp = memberService.memberComment(id);
@@ -83,7 +83,7 @@ public class MemberController {
         return "comments/commentDelete";
     }
 
-    @PostMapping("/comments/delete/{id}")
+    @PostMapping("/comments/commentDelete/{id}")
     public String boardDelete(@PathVariable("id") Long id, Member member){
 
         Member memberTmp = memberService.memberComment(id);

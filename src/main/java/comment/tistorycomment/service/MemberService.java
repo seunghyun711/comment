@@ -45,14 +45,14 @@ public class MemberService {
         this.memberRepository = memberRepository;
     }
 
-    /**
-     * 전체 댓글 조회
-     */
-    public List<Member> findComments(){
-        return memberRepository.findAll();
-    }
-
-    public Optional<Member> findOne(Long memberId){
-        return memberRepository.findById(memberId);
-    }
+//    /**
+//     * 전체 댓글 조회
+//     */
+//    public List<Member> findComments(){
+//        return memberRepository.findAll();
+//    }
+//
+//    public Optional<Member> findOne(Long memberId){
+//        return memberRepository.findById(memberId);
+//    }
 }
